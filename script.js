@@ -69,4 +69,14 @@ function playRound()
 }
 
 
-playRound();
+//simulates five rounds of rock, paper, scissors
+function playFiveRounds()
+{
+    for(let i = 0; i < 5; i++)
+    {
+        playRound(); 
+           
+    }
+}
+
+playFiveRounds();
