@@ -69,25 +69,6 @@ function playRound()
 }
 
 
-//simulates five rounds of rock, paper, scissors
-function playFiveRounds()
-{
-    for(let i = 0; i < 5; i++)
-    {
-        if(i <= 4)
-        {
-            playRound();
-        } 
-        else
-        {
-            totalPointsScored(playerScore, computerScore);
-        }
-    }
-}
-
-playFiveRounds();
-
-
 //At the end of five rounds, determine if the player or computer has the higher score.
 function totalPointsScored(playScore, compScore)
 {
@@ -104,3 +85,22 @@ function totalPointsScored(playScore, compScore)
         console.log("It's a tie?!? Better luck next time.");
     }
 }
+
+
+//simulates five rounds of rock, paper, scissors
+function playFiveRounds()
+{
+    for(let i = 0; i <= 5; i++)
+    {
+        if(i < 5)
+        {
+            playRound();
+        } 
+        else
+        {
+            totalPointsScored(playerScore, computerScore);
+        }
+    }
+}
+
+playFiveRounds();
