@@ -74,9 +74,33 @@ function playFiveRounds()
 {
     for(let i = 0; i < 5; i++)
     {
-        playRound(); 
-           
+        if(i <= 4)
+        {
+            playRound();
+        } 
+        else
+        {
+            totalPointsScored(playerScore, computerScore);
+        }
     }
 }
 
 playFiveRounds();
+
+
+//At the end of five rounds, determine if the player or computer has the higher score.
+function totalPointsScored(playScore, compScore)
+{
+    if(playScore > compScore)
+    {
+        console.log("Nice!! You beat the computer");
+    }
+    else if (compScore > playScore)
+    {
+        console.log("You lost :(. The computer scored higher.");
+    }
+    else
+    {
+        console.log("It's a tie?!? Better luck next time.");
+    }
+}
