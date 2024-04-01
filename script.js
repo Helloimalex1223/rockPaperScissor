@@ -3,6 +3,10 @@ let playerScore = 0;
 let computerScore = 0;
 
 
+//Sets the round number
+let roundNumber = 1;
+
+
 
 //The function simulates one round of rock, paper, scissors.
 
@@ -11,7 +15,10 @@ let computerScore = 0;
 
 function playRound()
 {
-
+    console.log("**************************************");
+    console.log(`ROCK PAPER SCISSORS ROUND ${roundNumber}`);
+    console.log("**************************************");
+    
     //Chooses a random number between zero, one, and two
     function chooseRandomHand()
     {
@@ -66,6 +73,7 @@ function playRound()
 
 
     determineWinner(playerChoice, computerChoice);
+    roundNumber++;
 }
 
 
