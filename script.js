@@ -8,16 +8,31 @@ let roundNumber = 1;
 
 
 
+// roundNumber = 1;
+// computerScore = 0;
+// playerScore = 0;
+
+
 //The function simulates one round of rock, paper, scissors.
 
 
-
+function checkWinner(playerScore, computerScore)
+{
+    if(playerScore == 5 || computerScore == 5)
+    {
+        totalPointsScored(playerScore, computerScore); 
+    } 
+}
 
 function playRound(playChoice)
 {
-    console.log("**************************************");
-    console.log(`ROCK PAPER SCISSORS ROUND ${roundNumber}`);
-    console.log("**************************************");
+    //resets the score values and clears the winner text if the checkWinner function was already called and the user plays another round
+    if(playerScore == 5 || computerScore == 5)
+    {
+        playerScore = 0;
+        computerScore = 0;
+        winnerText.textContent = "";
+    }
     
     //Chooses a random number between zero, one, and two
     function chooseRandomHand()
@@ -77,7 +92,7 @@ function playRound(playChoice)
         {
             playerChoiceText.textContent = playerChoice;
             computerChoiceText.textContent = computerChoice;
-            
+
             playerScoreText.textContent = playerScore;
             computerScoreText.textContent = computerScore;
         }
@@ -86,32 +101,37 @@ function playRound(playChoice)
 
     determineWinner(playerChoice, computerChoice);
     roundNumber++;
-}
-
-
-//At the end of five rounds, determine if the player or computer has the higher score.
-function totalPointsScored(playScore, compScore)
-{
-    if(playScore > compScore)
-    {
-        console.log("Nice!! You beat the computer");
-    }
-    else if (compScore > playScore)
-    {
-        console.log("You lost :(. The computer scored higher.");
-    }
-    else
-    {
-        console.log("It's a tie?!? Better luck next time.");
-    }
+    checkWinner(playerScore, computerScore);
 }
 
 //selecting DOM elements for the text content part of the UI
 let playerChoiceText = document.querySelector("#playChoice");
 let computerChoiceText = document.querySelector("#compChoice");
 
+let winnerText = document.querySelector("#winner");
+
+playerChoiceText.style.color = "#FFC482";
+computerChoiceText.style.color = "#FFC482";
+
 let playerScoreText = document.querySelector("#playScore"); 
 let computerScoreText = document.querySelector("#compScore"); 
+
+//At the end of five rounds, determine if the player or computer has the higher score.
+function totalPointsScored(playScore, compScore)
+{
+    if(playScore > compScore)
+    {
+        winnerText.textContent = "Nice!! You beat the computer";
+    }
+    else if (compScore > playScore)
+    {
+        winnerText.textContent = "You lost :(. The computer scored higher.";
+    }
+    else
+    {
+        winnerText.textContent = "It's a tie?!? Better luck next time.";
+    }
+}
 
 
 //Selecting DOM elements/calling the play round function when a button is clicked
