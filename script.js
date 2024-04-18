@@ -13,7 +13,7 @@ let roundNumber = 1;
 
 
 
-function playRound()
+function playRound(playChoice)
 {
     console.log("**************************************");
     console.log(`ROCK PAPER SCISSORS ROUND ${roundNumber}`);
@@ -37,7 +37,7 @@ function playRound()
     //Ensure the entered values must be rock, paper, or scissors
     //Case sensitivity does not matter. Accept inputs in any case
 
-    let playerChoice = prompt("Make your choice: Rock, Paper, or Scissors?").toLowerCase();
+    let playerChoice = playChoice;
 
     //Create the logic for how each choice interacts with the other
 
@@ -49,8 +49,12 @@ function playRound()
         playerChoice == "scissors" && computerChoice == "paper")
         {
             playerScore++;
-            console.log(`You won! You chose ${playerChoice} and the computer chose ${computerChoice}`)
-            console.log(`Your score is ${playerScore} and the computer's score is ${computerScore}.`)
+
+            playerChoiceText.textContent = playerChoice;
+            computerChoiceText.textContent = computerChoice;
+
+            playerScoreText.textContent = playerScore;
+            computerScoreText.textContent = computerScore;
         }
 
         //The following scenarios equal the computer winning
@@ -59,15 +63,23 @@ function playRound()
         playerChoice == "paper" && computerChoice == "scissors")
         {
             computerScore++;
-            console.log(`You lost! You chose ${playerChoice} and the computer chose ${computerChoice}.`)
-            console.log(`Your score is ${playerScore} and the computer's score is ${computerScore}.`)
+
+            playerChoiceText.textContent = playerChoice;
+            computerChoiceText.textContent = computerChoice;
+
+            playerScoreText.textContent = playerScore;
+            computerScoreText.textContent = computerScore;
             
         }
 
         //The following scenarios result in a tie
         else
         {
-            console.log("It's a tie!!")
+            playerChoiceText.textContent = playerChoice;
+            computerChoiceText.textContent = computerChoice;
+            
+            playerScoreText.textContent = playerScore;
+            computerScoreText.textContent = computerScore;
         }
 }
 
@@ -94,21 +106,32 @@ function totalPointsScored(playScore, compScore)
     }
 }
 
+//selecting DOM elements for the text content part of the UI
+let playerChoiceText = document.querySelector("#playChoice");
+let computerChoiceText = document.querySelector("#compChoice");
 
-//simulates five rounds of rock, paper, scissors
-function playFiveRounds()
+let playerScoreText = document.querySelector("#playScore"); 
+let computerScoreText = document.querySelector("#compScore"); 
+
+
+//Selecting DOM elements/calling the play round function when a button is clicked
+let rockBtn = document.querySelector("#rock");
+
+rockBtn.addEventListener("click", function()
 {
-    for(let i = 0; i <= 5; i++)
-    {
-        if(i < 5)
-        {
-            playRound();
-        } 
-        else
-        {
-            totalPointsScored(playerScore, computerScore);
-        }
-    }
-}
+    playRound("rock");
+});
 
-playFiveRounds();
+let paperBtn = document.querySelector("#paper");
+
+paperBtn.addEventListener("click", function()
+{
+    playRound("paper");
+});
+
+let scissorsBtn = document.querySelector("#scissors");
+
+scissorsBtn.addEventListener("click", function()
+{
+    playRound("scissors");
+});
